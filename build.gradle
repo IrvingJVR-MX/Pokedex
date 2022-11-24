@@ -8,3 +8,12 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat "full"
+        events "PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR"
+        showStandardStreams true
+    }
+}
