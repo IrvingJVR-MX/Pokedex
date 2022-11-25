@@ -3,7 +3,7 @@ query PokemonList {
         results {
             id
             name
-            image
+            artwork
         }
     }
 }

@@ -5,13 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.databinding.PokemonItemBinding
 import com.graphqlapollo.PokemonListQuery
+import com.squareup.picasso.Picasso
 
 
 class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQuery.Result>) : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder> () {
 
     class PokemonViewHolder(val binding: PokemonItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun fillData(postDetail: PokemonListQuery.Result) {
-            binding.tvPokemonName.text = postDetail.name
+        fun fillData(pokemonDetail: PokemonListQuery.Result) {
+            val url = pokemonDetail.artwork
+            Picasso.get()
+                .load(url)
+                .into(binding.ivPokemon)
+            val pokemonName = pokemonDetail.name?.replaceFirstChar{it.uppercase()}
+            binding.tvPokemonName.text = pokemonName
         }
     }
 
