@@ -8,14 +8,14 @@ import javax.inject.Inject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.exception.ApolloException
-import com.example.pokedex.repository.interfaces.PokemonRepository
+import com.example.pokedex.repository.interfaces.PokemonSource
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonListQuery
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class PokemonViewModel
-@Inject constructor(private val repository: PokemonRepository): ViewModel()  {
+@Inject constructor(private val repository: PokemonSource): ViewModel()  {
     private val _PokemonList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
     val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>>
         get() = _PokemonList

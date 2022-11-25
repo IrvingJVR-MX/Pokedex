@@ -1,4 +1,4 @@
-package com.example.pokedex.ui.pokemonList.adapter.holder
+package com.example.pokedex.utils
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
