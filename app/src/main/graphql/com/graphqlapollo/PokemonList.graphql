@@ -1,0 +1,9 @@
+query PokemonList {
+    pokemons {
+        results {
+            id
+            name
+            artwork
+        }
+    }
+}
