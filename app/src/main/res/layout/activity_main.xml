@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.pokemonList.view.MainActivity">
+    tools:context=".ui.pokemonList.view.PokemonList">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pokemon"
         android:layout_width="match_parent"

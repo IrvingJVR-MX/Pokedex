@@ -1,5 +1,6 @@
 package com.example.pokedex.ui.pokemonList.viewModel
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apollographql.apollo.api.Response
@@ -10,15 +11,15 @@ import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.exception.ApolloException
 import com.example.pokedex.repository.interfaces.PokemonSource
 import com.example.pokedex.utils.ViewState
+import com.graphqlapollo.PokemonDetailQuery
 import com.graphqlapollo.PokemonListQuery
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class PokemonViewModel
+class PokemonListViewModel
 @Inject constructor(private val repository: PokemonSource): ViewModel()  {
     private val _PokemonList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
-    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>>
-        get() = _PokemonList
+    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonList
 
     fun queryPokemonList() = viewModelScope.launch {
         _PokemonList.postValue(ViewState.Loading())
