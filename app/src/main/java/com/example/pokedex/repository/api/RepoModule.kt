@@ -1,0 +1,16 @@
+package com.example.pokedex.repository.api
+
+import com.example.pokedex.repository.api.PokemonApi
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepoModule {
+    @Provides
+    @Singleton
+    fun providePokemonApi() = PokemonApi()
+}
