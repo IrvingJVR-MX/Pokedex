@@ -61,8 +61,10 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
 
     override fun pokemonDetail(name: String, image : String) {
         val intent = Intent(this, PokemonDetail::class.java)
-        intent.putExtra("pokemonName",name)
-        intent.putExtra("pokemonImage", image)
+        val bundle = Bundle()
+        bundle.putString("pokemonName", name)
+        bundle.putString("pokemonImage", image)
+        intent.putExtras(bundle);
         startActivity(intent)
     }
 }

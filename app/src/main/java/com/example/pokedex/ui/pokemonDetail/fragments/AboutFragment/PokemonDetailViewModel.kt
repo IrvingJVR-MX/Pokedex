@@ -1,4 +1,4 @@
-package com.example.pokedex.ui.pokemonDetail
+package com.example.pokedex.ui.pokemonDetail.fragments.AboutFragment
 
 import android.util.Log
 import androidx.lifecycle.LiveData
