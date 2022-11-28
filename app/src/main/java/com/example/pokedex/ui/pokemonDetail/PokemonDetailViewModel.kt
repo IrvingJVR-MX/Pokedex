@@ -27,7 +27,7 @@ class PokemonDetailViewModel
             _PokemonDetail.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
             Log.d("ApolloException", "Failure", e)
-            _PokemonDetail.postValue(ViewState.Error("Error fetching characters"))
+            _PokemonDetail.postValue(ViewState.Error("Error fetching"))
         }
     }
 }

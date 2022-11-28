@@ -32,11 +32,11 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
     private fun observeData(){
         viewModel.pokemonList.observe(this){ response ->
             when(response) {
-               is ViewState.Success ->{
+                is ViewState.Success ->{
                    val results = response.value?.data?.pokemons?.results
                    pokemonList = results as MutableList<PokemonListQuery.Result>
                    initList()
-               }
+                }
                 is ViewState.Error -> {
                     pokemonList = mutableListOf()
                     initList()

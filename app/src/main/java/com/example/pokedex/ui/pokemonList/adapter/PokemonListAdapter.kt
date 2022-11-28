@@ -33,7 +33,7 @@ class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQ
         val pokemon = pokemonDetailList[position]
         holder.fillData(pokemon)
         holder.binding.cvPokemon.setOnClickListener{
-            val name = pokemon.name?.let { pokemon.name.replaceFirstChar { it.uppercase() } } ?: ""
+            val name = pokemon.name?.let { pokemon.name} ?: ""
             val image = pokemon.artwork?.let { pokemon.artwork } ?: ""
             listener.pokemonDetail(name, image)
         }
