@@ -1,10 +1,14 @@
 package com.example.pokedex.repository.interfaces
 
 import com.apollographql.apollo.api.Response
-import com.graphqlapollo.PokemonDetailQuery
+import com.graphqlapollo.PokemonAboutInfoQuery
 import com.graphqlapollo.PokemonListQuery
+import com.graphqlapollo.PokemonStatsInfoQuery
+import com.graphqlapollo.PokemonTypeInfoQuery
 
 interface PokemonSource {
-    suspend fun getPokemons(): Response<PokemonListQuery.Data>
-    suspend fun getPokemonDetail(name: String): Response<PokemonDetailQuery.Data>
+    suspend fun getPokemonList(): Response<PokemonListQuery.Data>
+    suspend fun getPokemonAboutInfo(name: String): Response<PokemonAboutInfoQuery.Data>
+    suspend fun getPokemonStatsInfo(name: String): Response<PokemonStatsInfoQuery.Data>
+    suspend fun getPokemonTypeInfo(name: String): Response<PokemonTypeInfoQuery.Data>
 }

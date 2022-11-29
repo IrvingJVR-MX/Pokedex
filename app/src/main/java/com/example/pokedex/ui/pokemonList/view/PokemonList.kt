@@ -3,12 +3,11 @@ package com.example.pokedex.ui.pokemonList.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.ActivityMainBinding
-import com.example.pokedex.ui.pokemonDetail.PokemonDetail
+import com.example.pokedex.ui.pokemonDetail.view.PokemonDetail
 import com.example.pokedex.utils.ViewState
 import com.example.pokedex.ui.pokemonList.adapter.PokemonListAdapter
 import com.example.pokedex.ui.pokemonList.viewModel.PokemonListViewModel

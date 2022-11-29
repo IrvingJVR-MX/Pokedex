@@ -1,0 +1,11 @@
+query PokemonStatsInfo($name: String!) {
+    pokemon(name: $name){
+        stats{
+            stat{
+                name
+            }
+            base_stat
+            effort
+        }
+    }
+}

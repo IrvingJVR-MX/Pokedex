@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pokedex.ui.pokemonDetail.fragments.AboutFragment.view.AboutFragment
 import com.example.pokedex.ui.pokemonDetail.fragments.EvolutionFragment.EvolutionFragment
-import com.example.pokedex.ui.pokemonDetail.fragments.StatFragment.StatFragment
+import com.example.pokedex.ui.pokemonDetail.fragments.StatFragment.view.StatFragment
 
 internal class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, pokemonName: String): FragmentStateAdapter(fragmentManager, lifecycle){
     private val _pokemonName = pokemonName
@@ -21,7 +21,7 @@ internal class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Life
                 AboutFragment(_pokemonName)
             }
             1-> {
-                StatFragment()
+                StatFragment(_pokemonName)
             }
             2 -> {
                 EvolutionFragment()

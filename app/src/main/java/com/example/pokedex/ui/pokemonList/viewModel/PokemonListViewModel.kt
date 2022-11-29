@@ -1,6 +1,5 @@
 package com.example.pokedex.ui.pokemonList.viewModel
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apollographql.apollo.api.Response
@@ -11,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.exception.ApolloException
 import com.example.pokedex.repository.interfaces.PokemonSource
 import com.example.pokedex.utils.ViewState
-import com.graphqlapollo.PokemonDetailQuery
 import com.graphqlapollo.PokemonListQuery
 import kotlinx.coroutines.launch
 
@@ -24,7 +22,7 @@ class PokemonListViewModel
     fun queryPokemonList() = viewModelScope.launch {
         _PokemonList.postValue(ViewState.Loading())
         try {
-            val response = repository.getPokemons()
+            val response = repository.getPokemonList()
             _PokemonList.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
             Log.d("ApolloException", "Failure", e)

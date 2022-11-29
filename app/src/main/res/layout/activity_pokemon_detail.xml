@@ -7,9 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.pokemonDetail.PokemonDetail"
+    tools:context=".ui.pokemonDetail.view.PokemonDetail"
     >
             <LinearLayout
+                android:id="@+id/pokemonDetailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -25,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -34,8 +35,8 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextColor="@color/black"
-                app:tabIndicatorColor="@color/purple_200"
+                app:tabTextColor="@color/white"
+                app:tabIndicatorColor="@color/white"
                 >
 
             </com.google.android.material.tabs.TabLayout>
@@ -46,6 +47,8 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10sp"
             />
     </ScrollView>
 

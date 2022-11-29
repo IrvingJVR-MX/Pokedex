@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="8sp"
+    android:layout_marginStart="20sp"
     tools:context=".ui.pokemonDetail.fragments.AboutFragment.view.AboutFragment"
     android:orientation="vertical">
 
@@ -14,12 +14,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pokedex_data"
-                android:textSize="18sp"
+                android:text="@string/pokemon_data"
+                android:textSize="25sp"
                 android:textColor="@color/black"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"/>
 
-            </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,8 +28,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="@string/pokemon_height">
-                </TextView>
+                    android:text="@string/pokemon_height"/>
                 <TextView
                     android:id="@+id/tv_pokemonHeight"
                     android:layout_marginStart="4sp"
@@ -38,8 +36,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    >
-                </TextView>
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -52,8 +49,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="@string/pokemon_weight">
-                </TextView>
+                    android:text="@string/pokemon_weight"/>
                 <TextView
                     android:id="@+id/tv_pokemonWeight"
                     android:layout_marginStart="4sp"
@@ -61,8 +57,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    >
-                </TextView>
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -75,8 +70,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="@string/pokemon_type">
-                </TextView>
+                    android:text="@string/pokemon_type"/>
                 <TextView
                     android:id="@+id/tv_type"
                     android:layout_marginStart="4sp"
@@ -84,8 +78,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    >
-                </TextView>
+                    />
 
             </LinearLayout>
 
@@ -99,8 +92,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="@string/pokemon_abilities">
-                </TextView>
+                    android:text="@string/pokemon_abilities"/>
                 <TextView
                     android:id="@+id/tv_abilities"
                     android:layout_marginStart="4sp"
@@ -108,8 +100,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    >
-                </TextView>
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="10sp"
@@ -121,8 +112,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="@string/pokemon_moves">
-                </TextView>
+                    android:text="@string/pokemon_moves"/>
                 <TextView
                     android:id="@+id/tv_moves"
                     android:layout_marginStart="4sp"
@@ -131,8 +121,7 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5sp"
-                    >
-                </TextView>
+                    />
             </LinearLayout>
         </LinearLayout>
 

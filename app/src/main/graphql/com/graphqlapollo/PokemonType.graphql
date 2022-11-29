@@ -1,0 +1,10 @@
+query PokemonTypeInfo($name: String!) {
+    pokemon(name: $name){
+        types{
+            type{
+                name
+            }
+        }
+    }
+}
+
