@@ -4,9 +4,6 @@ query PokemonDetail($name: String!) {
         name
         height
         weight
-        species{
-            name
-        }
         moves{
             move{
                 name
@@ -21,6 +18,13 @@ query PokemonDetail($name: String!) {
             type{
                 name
             }
+        }
+        stats{
+            stat{
+                name
+            }
+            base_stat
+            effort
         }
     }
 }

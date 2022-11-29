@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.pokedex.ui.pokemonDetail.fragments.AboutFragment.AboutFragment
+import com.example.pokedex.ui.pokemonDetail.fragments.AboutFragment.view.AboutFragment
 import com.example.pokedex.ui.pokemonDetail.fragments.EvolutionFragment.EvolutionFragment
 import com.example.pokedex.ui.pokemonDetail.fragments.StatFragment.StatFragment
 
