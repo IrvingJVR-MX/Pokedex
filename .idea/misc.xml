@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/drawable-v24/card_background.xml" value="0.1745" />
         <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
+        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_pokemon_detail.xml" value="0.2" />
+        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_about.xml" value="0.2421875" />
+        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_evolution.xml" value="0.2421875" />
+        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_stat.xml" value="0.2421875" />
         <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemon_item.xml" value="0.264" />
         <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemonitem.xml" value="0.24114583333333334" />
       </map>
@@ -14,5 +19,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

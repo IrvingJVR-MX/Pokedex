@@ -14,16 +14,15 @@ import com.graphqlapollo.PokemonListQuery
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class PokemonViewModel
+class PokemonListViewModel
 @Inject constructor(private val repository: PokemonSource): ViewModel()  {
     private val _PokemonList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
-    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>>
-        get() = _PokemonList
+    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonList
 
     fun queryPokemonList() = viewModelScope.launch {
         _PokemonList.postValue(ViewState.Loading())
         try {
-            val response = repository.getPokemons()
+            val response = repository.getPokemonList()
             _PokemonList.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
             Log.d("ApolloException", "Failure", e)

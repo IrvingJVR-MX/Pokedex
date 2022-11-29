@@ -1,0 +1,24 @@
+query PokemonAboutInfo($name: String!) {
+    pokemon(name: $name){
+        id
+        name
+        height
+        weight
+        moves{
+            move{
+                name
+            }
+        }
+        abilities{
+            ability{
+                name
+            }
+        }
+        types{
+            type{
+                name
+            }
+        }
+    }
+}
+
