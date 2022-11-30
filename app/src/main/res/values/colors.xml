@@ -10,8 +10,8 @@
     <color name="colorPrimary">#FFFDE3</color>
 
     <color name="trackColor">#F7F7F7</color>
-    <color name="statusBar">#000000</color>
-
+    <color name="statusBar">#1B2430</color>
+    <color name="searchBarColor">#f2f2f2</color>
     <!--Pokemon type colors-->
     <color name="normal">#b5b9c4</color>
     <color name="fire">#ffa756</color>

@@ -18,6 +18,7 @@ class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQ
         fun fillData(pokemonDetail: PokemonListQuery.Result) {
             val typeColor = Color.parseColor(PokemonHelper.Constants.pokemonMapColor[pokemonDetail.id.toString()])
             binding.cvPokemon.setBackgroundColor(typeColor)
+            binding.tvPokemonId.text = "#${pokemonDetail.id}"
             val url = pokemonDetail.artwork
             Picasso.get()
                 .load(url)
