@@ -1,5 +1,5 @@
 query PokemonList {
-    pokemons {
+    pokemons (limit: 25, offset: 0){
         results {
             id
             name
