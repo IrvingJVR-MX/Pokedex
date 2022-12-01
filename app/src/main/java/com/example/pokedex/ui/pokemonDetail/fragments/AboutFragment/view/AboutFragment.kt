@@ -14,12 +14,13 @@ import com.graphqlapollo.PokemonAboutInfoQuery
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AboutFragment(name: String) : Fragment() {
+class AboutFragment(name: String, color: Int) : Fragment() {
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
     private lateinit var pokemonAboutInfo: PokemonAboutInfoQuery.Pokemon
     private val viewModel: AboutViewModel by viewModels()
     private var pokemonName: String = name
+    private var pokemonColor: Int = color
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +34,7 @@ class AboutFragment(name: String) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeData()
         viewModel.queryPokemonDetail(pokemonName)
+        binding.tvPokemonData.setTextColor(pokemonColor)
     }
 
     private fun observeData() {

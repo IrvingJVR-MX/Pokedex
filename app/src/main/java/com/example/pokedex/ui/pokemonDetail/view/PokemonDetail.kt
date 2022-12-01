@@ -1,17 +1,16 @@
 package com.example.pokedex.ui.pokemonDetail.view
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivityPokemonDetailBinding
 import com.example.pokedex.ui.pokemonDetail.adapter.ViewPageAdapter
 import com.example.pokedex.ui.pokemonDetail.viewmodel.PokemonDetailViewModel
+import com.example.pokedex.utils.PokemonHelper
 import com.example.pokedex.utils.ViewState
 import com.google.android.material.tabs.TabLayoutMediator
 import com.graphqlapollo.PokemonTypeInfoQuery
@@ -25,7 +24,7 @@ class PokemonDetail : AppCompatActivity() {
     private var pokemonImage: String = ""
     private val viewModel: PokemonDetailViewModel by viewModels()
     private lateinit var pokemonTypeInfo: PokemonTypeInfoQuery.Pokemon
-
+    private var pokemonColor: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
@@ -38,15 +37,16 @@ class PokemonDetail : AppCompatActivity() {
         observeData()
         viewModel.queryPokemonType(pokemonName)
         initPokemonData()
-        initAdapter()
     }
     private fun initColor(){
         val typeObj = pokemonTypeInfo.types?.first()
         val typeName = typeObj?.type?.name?.let { it }.toString().trim()
         val packageName: String = this.packageName
-        val desiredColour = ResourcesCompat.getColor(this.resources, resources.getIdentifier(typeName, "color",packageName),this.theme)
-        binding.pokemonDetailLayout.setBackgroundColor(desiredColour)
-        binding.tabLayout.setBackgroundColor(desiredColour)
+        val color = ResourcesCompat.getColor(this.resources, resources.getIdentifier(typeName, "color",packageName),this.theme)
+        pokemonColor = color
+        binding.pokemonDetailLayout.setBackgroundColor(color)
+        binding.tabLayout.setBackgroundColor(color)
+        initAdapter()
     }
 
     private fun observeData() {
@@ -68,7 +68,7 @@ class PokemonDetail : AppCompatActivity() {
         }
     }
     private fun initAdapter(){
-        val adapter = ViewPageAdapter(supportFragmentManager, lifecycle, pokemonName)
+        val adapter = ViewPageAdapter(supportFragmentManager, lifecycle, pokemonName, pokemonColor)
         binding.viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
             when(position) {

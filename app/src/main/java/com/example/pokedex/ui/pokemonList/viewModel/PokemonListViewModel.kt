@@ -19,15 +19,31 @@ class PokemonListViewModel
     private val _PokemonList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
     val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonList
 
+    private val _PokemonPaginationList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
+    val pokemonPaginationList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonPaginationList
+
+    private var offset = 0
     fun queryPokemonList() = viewModelScope.launch {
         _PokemonList.postValue(ViewState.Loading())
         try {
-            val response = repository.getPokemonList()
+            val response = repository.getPokemonList(10,0)
             _PokemonList.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
             Log.d("ApolloException", "Failure", e)
             _PokemonList.postValue(ViewState.Error("Error fetching characters"))
         }
+    }
+
+    fun queryMorePokemon() = viewModelScope.launch{
+        offset+=10
+        _PokemonPaginationList.postValue(ViewState.Loading())
+            try {
+                val response = repository.getPokemonList(10,offset)
+                _PokemonPaginationList.postValue(ViewState.Success(response))
+            } catch (e: ApolloException) {
+                Log.d("ApolloException", "Failure", e)
+                _PokemonPaginationList.postValue(ViewState.Error("Error fetching characters"))
+            }
     }
 }
 

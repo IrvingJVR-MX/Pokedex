@@ -1,4 +1,4 @@
-package com.example.pokedex.ui.pokemonDetail.fragments.EvolutionFragment
+package com.example.pokedex.ui.pokemonDetail.fragments.EvolutionFragment.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
