@@ -55,19 +55,21 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
                 is ViewState.Success ->{
                     val results = response.value?.data?.pokemons?.results
                     pokemonList.addAll(results as MutableList<PokemonListQuery.Result>)
-                    loading =false
+                    loading = false
                 }
                 is ViewState.Error -> {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
+                is ViewState.Loading -> {
+                    loading = true
+                }
                 else -> {
-
+                    Toast.makeText(this, "unknown Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
     }
-
     private fun initList() {
         adapter = PokemonListAdapter(pokemonList, this)
         setRecycler()
@@ -90,7 +92,6 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
              }
          })
     }
-
     override fun pokemonDetail(name: String, id: String ,image : String) {
         val intent = Intent(this, PokemonDetail::class.java)
         val bundle = Bundle()

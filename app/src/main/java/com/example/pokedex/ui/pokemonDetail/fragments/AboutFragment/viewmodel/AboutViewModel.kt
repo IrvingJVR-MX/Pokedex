@@ -27,10 +27,7 @@ class AboutViewModel
             val response = repository.getPokemonAboutInfo(name)
             _PokemonAboutInfo.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
-            Log.d("ApolloException", "Failure", e)
-            _PokemonAboutInfo.postValue(ViewState.Error("Error fetching"))
+            _PokemonAboutInfo.postValue(ViewState.Error("Error"))
         }
     }
-
-
 }

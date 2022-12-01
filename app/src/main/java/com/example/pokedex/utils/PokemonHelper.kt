@@ -2,6 +2,7 @@ package com.example.pokedex.utils
 
 class PokemonHelper {
     object Constants {
+        const val pokemonListLimit = 25
         val pokemonMapColor = mutableMapOf(
             "1" to "#8abe8a",
             "2" to "#8abe8a",

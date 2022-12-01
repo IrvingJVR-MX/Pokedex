@@ -1,0 +1,289 @@
+Index: .idea/codeStyles/Project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/Project.xml b/.idea/codeStyles/Project.xml
+new file mode 100644
+--- /dev/null	(date 1669675897583)
++++ b/.idea/codeStyles/Project.xml	(date 1669675897583)
+@@ -0,0 +1,123 @@
++<component name="ProjectCodeStyleConfiguration">
++  <code_scheme name="Project" version="173">
++    <JetCodeStyleSettings>
++      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
++    </JetCodeStyleSettings>
++    <codeStyleSettings language="XML">
++      <option name="FORCE_REARRANGE_MODE" value="1" />
++      <indentOptions>
++        <option name="CONTINUATION_INDENT_SIZE" value="4" />
++      </indentOptions>
++      <arrangement>
++        <rules>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>xmlns:android</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>^$</XML_NAMESPACE>
++                </AND>
++              </match>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>xmlns:.*</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>^$</XML_NAMESPACE>
++                </AND>
++              </match>
++              <order>BY_NAME</order>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>.*:id</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
++                </AND>
++              </match>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>.*:name</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
++                </AND>
++              </match>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>name</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>^$</XML_NAMESPACE>
++                </AND>
++              </match>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>style</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>^$</XML_NAMESPACE>
++                </AND>
++              </match>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>.*</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>^$</XML_NAMESPACE>
++                </AND>
++              </match>
++              <order>BY_NAME</order>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>.*</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
++                </AND>
++              </match>
++              <order>ANDROID_ATTRIBUTE_ORDER</order>
++            </rule>
++          </section>
++          <section>
++            <rule>
++              <match>
++                <AND>
++                  <NAME>.*</NAME>
++                  <XML_ATTRIBUTE />
++                  <XML_NAMESPACE>.*</XML_NAMESPACE>
++                </AND>
++              </match>
++              <order>BY_NAME</order>
++            </rule>
++          </section>
++        </rules>
++      </arrangement>
++    </codeStyleSettings>
++    <codeStyleSettings language="kotlin">
++      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
++    </codeStyleSettings>
++  </code_scheme>
++</component>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'org.jetbrains.kotlin.android'\n    id 'kotlin-kapt'\n    id 'dagger.hilt.android.plugin'\n    id(\"com.apollographql.apollo\").version(\"2.5.13\")\n}\n\nandroid {\n    compileSdk 32\n\n    defaultConfig {\n        applicationId \"com.example.pokedex\"\n        minSdk 26\n        targetSdk 32\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n    buildFeatures {\n        viewBinding true\n        dataBinding true\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = '1.8'\n    }\n}\n\napollo {\n    generateKotlinModels.set(true)\n}\n\ndependencies {\n\n    implementation 'androidx.core:core-ktx:1.7.0'\n    implementation 'androidx.appcompat:appcompat:1.5.1'\n    implementation 'com.google.android.material:material:1.7.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\n    testImplementation 'junit:junit:4.13.2'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\n\n    //Dagger - Hilt\n    implementation 'com.google.dagger:hilt-android:2.42'\n    kapt 'com.google.dagger:hilt-compiler:2.42'\n    implementation(\"androidx.hilt:hilt-navigation-fragment:1.0.0\")\n\n    // Apollo GraphQL\n    implementation \"com.apollographql.apollo:apollo-runtime:2.5.13\"\n    implementation \"com.apollographql.apollo:apollo-coroutines-support:2.5.13\"\n\n    // Coroutines\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'\n\n    // Coroutine Lifecycle Scopes\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1\"\n    implementation \"androidx.lifecycle:lifecycle-runtime-ktx:2.5.1\"\n\n    //Fragment\n    implementation 'androidx.fragment:fragment-ktx:1.1.0'\n\n    //piccasso\n    implementation \"com.squareup.picasso:picasso:2.71828\"\n\n    //View pager\n    implementation \"androidx.viewpager2:viewpager2:1.0.0\"\n\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/app/build.gradle	(date 1669675949957)
+@@ -36,6 +36,7 @@
+     kotlinOptions {
+         jvmTarget = '1.8'
+     }
++    namespace 'com.example.pokedex'
+ }
+ 
+ apollo {
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Thu Nov 24 07:46:37 CST 2022\ndistributionBase=GRADLE_USER_HOME\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-7.3.3-bin.zip\ndistributionPath=wrapper/dists\nzipStorePath=wrapper/dists\nzipStoreBase=GRADLE_USER_HOME\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1669675950045)
+@@ -1,6 +1,6 @@
+ #Thu Nov 24 07:46:37 CST 2022
+ distributionBase=GRADLE_USER_HOME
+-distributionUrl=https\://services.gradle.org/distributions/gradle-7.3.3-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.4-bin.zip
+ distributionPath=wrapper/dists
+ zipStorePath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+Index: .idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/codeStyleConfig.xml b/.idea/codeStyles/codeStyleConfig.xml
+new file mode 100644
+--- /dev/null	(date 1669675897584)
++++ b/.idea/codeStyles/codeStyleConfig.xml	(date 1669675897584)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
++  </state>
++</component>
+\ No newline at end of file
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"deploymentTargetDropDown\">\n    <targetSelectedWithDropDown>\n      <Target>\n        <type value=\"QUICK_BOOT_TARGET\" />\n        <deviceKey>\n          <Key>\n            <type value=\"VIRTUAL_DEVICE_PATH\" />\n            <value value=\"C:\\Users\\irvin\\.android\\avd\\Pixel_3a_API_30.avd\" />\n          </Key>\n        </deviceKey>\n      </Target>\n    </targetSelectedWithDropDown>\n    <timeTargetWasSelectedWithDropDown value=\"2022-11-24T23:26:55.499413700Z\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1669676080841)
+@@ -7,11 +7,11 @@
+         <deviceKey>
+           <Key>
+             <type value="VIRTUAL_DEVICE_PATH" />
+-            <value value="C:\Users\irvin\.android\avd\Pixel_3a_API_30.avd" />
++            <value value="$USER_HOME$/.android/avd/Pixel_3a_API_33_arm64-v8a.avd" />
+           </Key>
+         </deviceKey>
+       </Target>
+     </targetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2022-11-24T23:26:55.499413700Z" />
++    <timeTargetWasSelectedWithDropDown value="2022-11-28T22:54:22.639485Z" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/drawable-v24/card_background.xml\" value=\"0.1745\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_main.xml\" value=\"0.2421875\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_pokemon_detail.xml\" value=\"0.264\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_about.xml\" value=\"0.2421875\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_evolution.xml\" value=\"0.2421875\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_stat.xml\" value=\"0.2421875\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemon_item.xml\" value=\"0.264\" />\n        <entry key=\"..\\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemonitem.xml\" value=\"0.24114583333333334\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/.idea/misc.xml	(date 1669676028699)
+@@ -1,23 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="DesignSurface">
+-    <option name="filePathToZoomLevelMap">
+-      <map>
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/drawable-v24/card_background.xml" value="0.1745" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/activity_pokemon_detail.xml" value="0.264" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_about.xml" value="0.2421875" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_evolution.xml" value="0.2421875" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/fragment_stat.xml" value="0.2421875" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemon_item.xml" value="0.264" />
+-        <entry key="..\:/Users/irvin/AndroidStudioProjects/Pokedex/app/src/main/res/layout/pokemonitem.xml" value="0.24114583333333334" />
+-      </map>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    package=\"com.example.pokedex\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\" />\n\n    <application\n        android:name=\".PokedexApp\"\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.Pokedex\"\n        tools:targetApi=\"31\">\n        <activity\n            android:name=\".ui.pokemonDetail.PokemonDetail\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".ui.pokemonList.view.PokemonList\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/app/src/main/AndroidManifest.xml	(date 1669675950046)
+@@ -1,7 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    package="com.example.pokedex">
++    xmlns:tools="http://schemas.android.com/tools">
+ 
+     <uses-permission android:name="android.permission.INTERNET" />
+ 
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\n\nbuildscript {\n    repositories {\n        google()\n        mavenCentral()\n        maven { url 'https://jitpack.io' }\n    }\n\n    dependencies {\n        classpath \"com.google.dagger:hilt-android-gradle-plugin:2.42\"\n    }\n}\n\n\n\nplugins {\n    id 'com.android.application' version '7.2.1' apply false\n    id 'com.android.library' version '7.2.1' apply false\n    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false\n    id 'org.jlleitschuh.gradle.ktlint' version '11.0.0'\n    id 'com.google.dagger.hilt.android' version '2.41' apply false\n\n}\ntask clean(type: Delete) {\n    delete rootProject.buildDir\n}\n\ntasks.withType(Test) {\n    useJUnitPlatform()\n    testLogging {\n        exceptionFormat \"full\"\n        events \"PASSED\", \"SKIPPED\", \"FAILED\", \"STANDARD_OUT\", \"STANDARD_ERROR\"\n        showStandardStreams true\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision 89c36e7a59ef5eca3aa91545355aca3168b7afb3)
++++ b/build.gradle	(date 1669675950043)
+@@ -15,8 +15,8 @@
+ 
+ 
+ plugins {
+-    id 'com.android.application' version '7.2.1' apply false
+-    id 'com.android.library' version '7.2.1' apply false
++    id 'com.android.application' version '7.3.1' apply false
++    id 'com.android.library' version '7.3.1' apply false
+     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+     id 'org.jlleitschuh.gradle.ktlint' version '11.0.0'
+     id 'com.google.dagger.hilt.android' version '2.41' apply false

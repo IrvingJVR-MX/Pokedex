@@ -26,6 +26,7 @@ class PokemonDetail : AppCompatActivity() {
     private val viewModel: PokemonDetailViewModel by viewModels()
     private lateinit var pokemonTypeInfo: PokemonTypeInfoQuery.Pokemon
     private var pokemonColor: Int = 0
+    private var loading = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
@@ -59,12 +60,17 @@ class PokemonDetail : AppCompatActivity() {
                     if (results != null) {
                         pokemonTypeInfo = results
                         initColor()
+                        loading = false
                     }
                 }
                 is ViewState.Error -> {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
+                is ViewState.Loading -> {
+                    loading = true
+                }
                 else -> {
+                    Toast.makeText(this, "unknown Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }

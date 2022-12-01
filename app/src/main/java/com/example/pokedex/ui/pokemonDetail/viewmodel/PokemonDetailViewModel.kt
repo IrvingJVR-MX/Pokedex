@@ -26,8 +26,7 @@ class PokemonDetailViewModel
             val response = repository.getPokemonTypeInfo(name)
             _PokemonTypeInfo.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
-            Log.d("ApolloException", "Failure", e)
-            _PokemonTypeInfo.postValue(ViewState.Error("Error fetching"))
+            _PokemonTypeInfo.postValue(ViewState.Error("Error"))
         }
     }
 }
