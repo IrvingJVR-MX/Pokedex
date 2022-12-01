@@ -22,6 +22,7 @@ class PokemonDetail : AppCompatActivity() {
     private lateinit var binding: ActivityPokemonDetailBinding
     private var pokemonName: String = ""
     private var pokemonImage: String = ""
+    private var pokemonId: String = ""
     private val viewModel: PokemonDetailViewModel by viewModels()
     private lateinit var pokemonTypeInfo: PokemonTypeInfoQuery.Pokemon
     private var pokemonColor: Int = 0
@@ -33,6 +34,7 @@ class PokemonDetail : AppCompatActivity() {
         if (bundle != null) {
             pokemonName =  bundle.getString("pokemonName", "")
             pokemonImage = bundle.getString("pokemonImage", "")
+            pokemonId = bundle.getString("pokemonId","")
         }
         observeData()
         viewModel.queryPokemonType(pokemonName)
@@ -91,6 +93,7 @@ class PokemonDetail : AppCompatActivity() {
             .load(url)
             .into(binding.ivPokemonDetailImage)
         binding.tvPokemonDetailName.text = pokemonName.replaceFirstChar { it.uppercase() }
+        binding.tvPokemonDetailId.text = "#$pokemonId"
     }
 
 }
