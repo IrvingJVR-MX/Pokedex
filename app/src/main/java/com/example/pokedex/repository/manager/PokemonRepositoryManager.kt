@@ -11,8 +11,8 @@ import com.graphqlapollo.PokemonTypeInfoQuery
 import javax.inject.Inject
 
 class PokemonRepositoryManager @Inject constructor (private val pokemonApi: PokemonApi): PokemonSource {
-    override suspend fun getPokemonList(): Response<PokemonListQuery.Data> {
-        return pokemonApi.getApolloClient().query(PokemonListQuery()).await()
+    override suspend fun getPokemonList(limit: Int, offset: Int): Response<PokemonListQuery.Data> {
+        return pokemonApi.getApolloClient().query(PokemonListQuery(limit, offset)).await()
     }
 
     override suspend fun getPokemonAboutInfo(name: String): Response<PokemonAboutInfoQuery.Data> {

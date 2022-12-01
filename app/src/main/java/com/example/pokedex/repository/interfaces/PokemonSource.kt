@@ -7,7 +7,7 @@ import com.graphqlapollo.PokemonStatsInfoQuery
 import com.graphqlapollo.PokemonTypeInfoQuery
 
 interface PokemonSource {
-    suspend fun getPokemonList(): Response<PokemonListQuery.Data>
+    suspend fun getPokemonList(limit: Int, offset: Int): Response<PokemonListQuery.Data>
     suspend fun getPokemonAboutInfo(name: String): Response<PokemonAboutInfoQuery.Data>
     suspend fun getPokemonStatsInfo(name: String): Response<PokemonStatsInfoQuery.Data>
     suspend fun getPokemonTypeInfo(name: String): Response<PokemonTypeInfoQuery.Data>
