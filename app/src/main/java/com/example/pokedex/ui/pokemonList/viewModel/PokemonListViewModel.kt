@@ -35,10 +35,10 @@ class PokemonListViewModel
     }
 
     fun queryMorePokemon() = viewModelScope.launch{
-        offset+=10
+        offset+=25
         _PokemonPaginationList.postValue(ViewState.Loading())
             try {
-                val response = repository.getPokemonList(10,offset)
+                val response = repository.getPokemonList(25,offset)
                 _PokemonPaginationList.postValue(ViewState.Success(response))
             } catch (e: ApolloException) {
                 Log.d("ApolloException", "Failure", e)

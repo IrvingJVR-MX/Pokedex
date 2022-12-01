@@ -10,7 +10,7 @@ import com.graphqlapollo.PokemonListQuery
 import com.squareup.picasso.Picasso
 
 
-class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQuery.Result>, private val listener: IListListener) : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder> () {
+class PokemonListAdapter(private var pokemonDetailList: MutableList<PokemonListQuery.Result>, private val listener: IListListener) : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder> () {
     interface IListListener {
         fun pokemonDetail(name: String, id: String, image: String)
     }

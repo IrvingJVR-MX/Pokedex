@@ -18,19 +18,17 @@
     <color name="water">#58abf6</color>
     <color name="electric">#f2cb55</color>
     <color name="grass">#8abe8a</color>
-    <color name="fighting">#eb4971</color>
-    <color name="poison">#9f6e97</color>
-    <color name="ground">#f78551</color>
-
-    <color name="flying">#A98FF3</color>
-    <color name="psychic">#F95587</color>
+    <color name="fighting">#d04164</color>
+    <color name="poison">#a553cc</color>
+    <color name="ground">#dd7749</color>
+    <color name="flying">#748fc9</color>
+    <color name="psychic">#ea5d60</color>
     <color name="bug">#8cb230</color>
-    <color name="rock">#B6A136</color>
-    <color name="ghost">#735797</color>
-    <color name="dragon">#6F35FC</color>
-    <color name="dark">#705746</color>
-    <color name="ice">#96D9D6</color>
-    <color name="steel">#B7B7CE</color>
-
-    <color name="fairy">#eba8c3</color>
+    <color name="rock">#baab82</color>
+    <color name="ghost">#556aae</color>
+    <color name="dragon">#0e6ac0</color>
+    <color name="dark">#58575f</color>
+    <color name="ice">#61cec0</color>
+    <color name="steel">#417d9a</color>
+    <color name="fairy">#ed6ec7</color>
 </resources>

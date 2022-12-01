@@ -22,8 +22,7 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: PokemonListViewModel by viewModels()
     private lateinit var adapter: PokemonListAdapter
-    private var pokemonList = mutableListOf<PokemonListQuery.Result>()
-    private var pokemonPaginationList = mutableListOf<PokemonListQuery.Result>()
+    private var pokemonList: MutableList<PokemonListQuery.Result> = arrayListOf()
     private var loading = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,7 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
             when(response) {
                 is ViewState.Success ->{
                    val results = response.value?.data?.pokemons?.results
-                   pokemonList = results as MutableList<PokemonListQuery.Result>
+                   pokemonList.addAll(results as MutableList<PokemonListQuery.Result>)
                    initList()
                 }
                 is ViewState.Error -> {
@@ -55,25 +54,20 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
             when(response) {
                 is ViewState.Success ->{
                     val results = response.value?.data?.pokemons?.results
-                    pokemonPaginationList = mutableListOf()
-                    pokemonPaginationList = results as MutableList<PokemonListQuery.Result>
-                    updateRecycler()
+                    pokemonList.addAll(results as MutableList<PokemonListQuery.Result>)
+                    loading =false
                 }
                 is ViewState.Error -> {
-                    pokemonPaginationList = mutableListOf()
-                    initList()
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    pokemonPaginationList = mutableListOf()
+
                 }
             }
         }
 
     }
-    private fun updateRecycler(){
 
-    }
     private fun initList() {
         adapter = PokemonListAdapter(pokemonList, this)
         setRecycler()
@@ -83,8 +77,13 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
          binding.rvPokemon.adapter = adapter
          binding.rvPokemon.layoutManager = linearLayoutManager
          binding.rvPokemon.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
              override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                 if (dy > 0 && !loading) {
+                 val layoutManager = LinearLayoutManager::class.java.cast(binding.rvPokemon.layoutManager)
+                 val totalItemCount = layoutManager.itemCount;
+                 val lastVisible = layoutManager.findLastVisibleItemPosition();
+                 val endHasBeenReached = lastVisible + 10 >= totalItemCount
+                 if(totalItemCount > 0 && endHasBeenReached && !loading){
                      loading = true
                      viewModel.queryMorePokemon()
                  }
