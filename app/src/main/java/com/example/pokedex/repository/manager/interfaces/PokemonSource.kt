@@ -1,4 +1,4 @@
-package com.example.pokedex.repository.interfaces
+package com.example.pokedex.repository.manager.interfaces
 
 import com.apollographql.apollo.api.Response
 import com.graphqlapollo.PokemonAboutInfoQuery

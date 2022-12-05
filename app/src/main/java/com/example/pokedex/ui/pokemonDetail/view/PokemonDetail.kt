@@ -1,7 +1,9 @@
 package com.example.pokedex.ui.pokemonDetail.view
 
+import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,12 +12,13 @@ import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivityPokemonDetailBinding
 import com.example.pokedex.ui.pokemonDetail.adapter.ViewPageAdapter
 import com.example.pokedex.ui.pokemonDetail.viewmodel.PokemonDetailViewModel
-import com.example.pokedex.utils.PokemonHelper
+import com.example.pokedex.utils.LoadingDialog
 import com.example.pokedex.utils.ViewState
 import com.google.android.material.tabs.TabLayoutMediator
 import com.graphqlapollo.PokemonTypeInfoQuery
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class PokemonDetail : AppCompatActivity() {
@@ -27,10 +30,18 @@ class PokemonDetail : AppCompatActivity() {
     private lateinit var pokemonTypeInfo: PokemonTypeInfoQuery.Pokemon
     private var pokemonColor: Int = 0
     private var loading = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val loading = LoadingDialog (this)
+        loading.startLoading()
+        Handler(Looper.getMainLooper()).postDelayed({
+            loading.isDismiss()
+        }, 2500)
+
         val bundle = intent.extras
         if (bundle != null) {
             pokemonName =  bundle.getString("pokemonName", "")
@@ -85,9 +96,6 @@ class PokemonDetail : AppCompatActivity() {
                 }
                 1 -> {
                     tab.text =  getString(R.string.stats)
-                }
-                2 -> {
-                    tab.text =  getString(R.string.evolution)
                 }
             }
 

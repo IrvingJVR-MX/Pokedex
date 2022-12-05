@@ -8,7 +8,7 @@ import javax.inject.Inject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.exception.ApolloException
-import com.example.pokedex.repository.interfaces.PokemonSource
+import com.example.pokedex.repository.manager.interfaces.PokemonSource
 import com.example.pokedex.utils.PokemonHelper
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonListQuery
