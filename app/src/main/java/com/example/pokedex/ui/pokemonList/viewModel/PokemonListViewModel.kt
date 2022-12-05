@@ -8,7 +8,8 @@ import javax.inject.Inject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.exception.ApolloException
-import com.example.pokedex.repository.interfaces.PokemonSource
+import com.example.pokedex.repository.manager.interfaces.PokemonSource
+import com.example.pokedex.utils.PokemonHelper
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonListQuery
 import kotlinx.coroutines.launch
@@ -17,32 +18,29 @@ import kotlinx.coroutines.launch
 class PokemonListViewModel
 @Inject constructor(private val repository: PokemonSource): ViewModel()  {
     private val _PokemonList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
-    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonList
-
+    private var offset = 0
     private val _PokemonPaginationList by lazy { MutableLiveData<ViewState<Response<PokemonListQuery.Data>>>() }
+    val pokemonList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonList
     val pokemonPaginationList: LiveData<ViewState<Response<PokemonListQuery.Data>>> get() = _PokemonPaginationList
 
-    private var offset = 0
     fun queryPokemonList() = viewModelScope.launch {
         _PokemonList.postValue(ViewState.Loading())
         try {
-            val response = repository.getPokemonList(25,0)
+            val response = repository.getPokemonList(PokemonHelper.Constants.pokemonListLimit,0)
             _PokemonList.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
-            Log.d("ApolloException", "Failure", e)
-            _PokemonList.postValue(ViewState.Error("Error fetching characters"))
+            _PokemonList.postValue(ViewState.Error("Error"))
         }
     }
 
     fun queryMorePokemon() = viewModelScope.launch{
-        offset+=10
+        offset += PokemonHelper.Constants.pokemonListLimit
         _PokemonPaginationList.postValue(ViewState.Loading())
             try {
-                val response = repository.getPokemonList(10,offset)
+                val response = repository.getPokemonList(PokemonHelper.Constants.pokemonListLimit,offset)
                 _PokemonPaginationList.postValue(ViewState.Success(response))
             } catch (e: ApolloException) {
-                Log.d("ApolloException", "Failure", e)
-                _PokemonPaginationList.postValue(ViewState.Error("Error fetching characters"))
+                _PokemonPaginationList.postValue(ViewState.Error("Error"))
             }
     }
 }

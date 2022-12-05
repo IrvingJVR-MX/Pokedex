@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.pokedex.ui.pokemonDetail.fragments.AboutFragment.view.AboutFragment
-import com.example.pokedex.ui.pokemonDetail.fragments.EvolutionFragment.view.EvolutionFragment
 import com.example.pokedex.ui.pokemonDetail.fragments.StatFragment.view.StatFragment
 
 internal class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, pokemonName: String, pokemonColor: Int): FragmentStateAdapter(fragmentManager, lifecycle){
@@ -13,7 +12,7 @@ internal class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Life
     private val _pokemonColor = pokemonColor
 
     override fun getItemCount(): Int {
-        return 3
+        return 2
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -23,9 +22,6 @@ internal class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Life
             }
             1-> {
                 StatFragment(_pokemonName, _pokemonColor)
-            }
-            2 -> {
-                EvolutionFragment()
             }
             else -> {
                 Fragment()

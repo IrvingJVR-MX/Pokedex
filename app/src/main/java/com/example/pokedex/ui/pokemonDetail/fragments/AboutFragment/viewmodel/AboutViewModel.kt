@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.example.pokedex.repository.interfaces.PokemonSource
+import com.example.pokedex.repository.manager.interfaces.PokemonSource
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonAboutInfoQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,10 +27,7 @@ class AboutViewModel
             val response = repository.getPokemonAboutInfo(name)
             _PokemonAboutInfo.postValue(ViewState.Success(response))
         } catch (e: ApolloException) {
-            Log.d("ApolloException", "Failure", e)
-            _PokemonAboutInfo.postValue(ViewState.Error("Error fetching"))
+            _PokemonAboutInfo.postValue(ViewState.Error("Error"))
         }
     }
-
-
 }

@@ -21,6 +21,7 @@ class AboutFragment(name: String, color: Int) : Fragment() {
     private val viewModel: AboutViewModel by viewModels()
     private var pokemonName: String = name
     private var pokemonColor: Int = color
+    private var loading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +51,11 @@ class AboutFragment(name: String, color: Int) : Fragment() {
                 is ViewState.Error -> {
                     Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
                 }
+                is ViewState.Loading -> {
+                    loading = true
+                }
                 else -> {
+                    Toast.makeText(activity, "unknown Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -58,7 +63,7 @@ class AboutFragment(name: String, color: Int) : Fragment() {
 
     private fun initPokemonData() {
         binding.tvPokemonHeight.text = pokemonAboutInfo.height.toString()
-        binding.tvPokemonWeight.text = pokemonAboutInfo.weight.toString()
+        binding.tvPokemonWeight.text = "${pokemonAboutInfo.weight}Kg"
         var pokemonType = ""
         pokemonAboutInfo.types?.forEach { typeName ->
             typeName!!.type?.name?.let { pokemonType += ", ${it.replaceFirstChar { it.uppercase()}} "}

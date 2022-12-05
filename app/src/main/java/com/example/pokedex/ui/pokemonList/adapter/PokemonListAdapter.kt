@@ -10,9 +10,9 @@ import com.graphqlapollo.PokemonListQuery
 import com.squareup.picasso.Picasso
 
 
-class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQuery.Result>, private val listener: IListListener) : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder> () {
+class PokemonListAdapter(private var pokemonDetailList: MutableList<PokemonListQuery.Result>, private val listener: IListListener) : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder> () {
     interface IListListener {
-        fun pokemonDetail(name: String, image: String)
+        fun pokemonDetail(name: String, id: String, image: String)
     }
     class PokemonViewHolder(val binding: PokemonItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun fillData(pokemonDetail: PokemonListQuery.Result) {
@@ -40,7 +40,8 @@ class PokemonListAdapter(private val pokemonDetailList: MutableList<PokemonListQ
         holder.binding.cvPokemon.setOnClickListener{
             val name = pokemon.name?.let { pokemon.name} ?: ""
             val image = pokemon.artwork?.let { pokemon.artwork } ?: ""
-            listener.pokemonDetail(name, image)
+            val id = pokemon.id?.let { pokemon.id.toString() } ?: ""
+            listener.pokemonDetail(name, id ,image)
         }
     }
 

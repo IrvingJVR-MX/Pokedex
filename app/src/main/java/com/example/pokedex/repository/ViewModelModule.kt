@@ -1,6 +1,6 @@
 package com.example.pokedex.repository
 
-import com.example.pokedex.repository.interfaces.PokemonSource
+import com.example.pokedex.repository.manager.interfaces.PokemonSource
 import com.example.pokedex.repository.manager.PokemonRepositoryManager
 import dagger.Binds
 import dagger.Module
