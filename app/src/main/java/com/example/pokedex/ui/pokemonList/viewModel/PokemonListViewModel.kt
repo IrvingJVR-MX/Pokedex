@@ -1,5 +1,4 @@
 package com.example.pokedex.ui.pokemonList.viewModel
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apollographql.apollo.api.Response

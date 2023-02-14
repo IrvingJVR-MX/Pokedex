@@ -1,6 +1,5 @@
 package com.example.pokedex.repository.api
 
-import com.example.pokedex.repository.api.PokemonApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

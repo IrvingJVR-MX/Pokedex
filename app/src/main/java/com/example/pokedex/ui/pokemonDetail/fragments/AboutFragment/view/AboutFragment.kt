@@ -62,8 +62,9 @@ class AboutFragment(name: String, color: Int) : Fragment() {
     }
 
     private fun initPokemonData() {
+        val pokemonWeight = "${pokemonAboutInfo.weight}Kg"
         binding.tvPokemonHeight.text = pokemonAboutInfo.height.toString()
-        binding.tvPokemonWeight.text = "${pokemonAboutInfo.weight}Kg"
+        binding.tvPokemonWeight.text = pokemonWeight
         var pokemonType = ""
         pokemonAboutInfo.types?.forEach { typeName ->
             typeName!!.type?.name?.let { pokemonType += ", ${it.replaceFirstChar { it.uppercase()}} "}

@@ -1,6 +1,5 @@
 package com.example.pokedex.ui.pokemonDetail.view
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -107,7 +106,8 @@ class PokemonDetail : AppCompatActivity() {
             .load(url)
             .into(binding.ivPokemonDetailImage)
         binding.tvPokemonDetailName.text = pokemonName.replaceFirstChar { it.uppercase() }
-        binding.tvPokemonDetailId.text = "#$pokemonId"
+        val pokemonId = "#$pokemonId"
+        binding.tvPokemonDetailId.text = pokemonId
     }
 
 }

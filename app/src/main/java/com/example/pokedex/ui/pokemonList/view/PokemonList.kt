@@ -1,6 +1,5 @@
 package com.example.pokedex.ui.pokemonList.view
 
-import android.R.attr.data
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -13,18 +12,20 @@ import com.example.pokedex.databinding.ActivityMainBinding
 import com.example.pokedex.ui.pokemonDetail.view.PokemonDetail
 import com.example.pokedex.ui.pokemonList.adapter.PokemonListAdapter
 import com.example.pokedex.ui.pokemonList.viewModel.PokemonListViewModel
+import com.example.pokedex.utils.IListListener
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonListQuery
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
+class PokemonList : AppCompatActivity(), IListListener{
     private lateinit var binding: ActivityMainBinding
     private val viewModel: PokemonListViewModel by viewModels()
     private lateinit var adapter: PokemonListAdapter
-    private var pokemonList: MutableList<PokemonListQuery.Result> = arrayListOf()
-    private var auxPokemonList: MutableList<PokemonListQuery.Result> = arrayListOf()
+    private var pokemonList: ArrayList<PokemonListQuery.Result> = arrayListOf()
     private var loading = false
     private var searchedPokemon = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +45,12 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
                    initList()
                 }
                 is ViewState.Error -> {
-                    pokemonList = mutableListOf()
+                    pokemonList = arrayListOf()
                     initList()
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    pokemonList = mutableListOf()
+                    pokemonList = arrayListOf()
                 }
             }
         }
@@ -79,32 +80,27 @@ class PokemonList : AppCompatActivity(), PokemonListAdapter.IListListener {
             android.widget.SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(qString: String): Boolean {
-                if (qString == ""){
-                    val size = pokemonList.size
-                    pokemonList.clear()
-                    adapter.notifyItemRangeRemoved(0, size)
-                    pokemonList.addAll(auxPokemonList)
-                    auxPokemonList.clear()
-                    searchedPokemon = false
-                }
+                filter(qString)
                 return true
             }
             override fun onQueryTextSubmit(qString: String): Boolean {
-                if (!searchedPokemon){
-                    auxPokemonList.addAll(pokemonList)
-                    val pokemon = pokemonList.filter { it.name!!.contains(qString)}
-                    val size = pokemonList.size
-                    pokemonList.clear()
-                    adapter.notifyItemRangeRemoved(0, size)
-                    pokemonList.addAll(pokemon)
-                    searchedPokemon = true
-
-                }
                 return true
             }
         })
     }
-
+    private fun filter(text : String){
+        val filteredList = ArrayList<PokemonListQuery.Result>()
+        for (item in pokemonList) {
+            if (item.name!!.lowercase().contains(text.lowercase(Locale.getDefault()))){
+                filteredList.add(item)
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "No pokemon found", Toast.LENGTH_SHORT).show()
+        } else {
+            adapter.filterList(filteredList)
+        }
+    }
     private fun initList() {
         adapter = PokemonListAdapter(pokemonList, this)
         setRecycler()
