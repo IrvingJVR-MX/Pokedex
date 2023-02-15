@@ -1,17 +1,17 @@
-package com.example.pokedex.repository.manager
+package com.example.pokedex.repository.remote.manager
 
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.await
 import com.example.pokedex.repository.api.PokemonApi
-import com.example.pokedex.repository.manager.interfaces.PokemonSource
+import com.example.pokedex.repository.remote.interfaces.PokemonRepository
 import com.graphqlapollo.PokemonAboutInfoQuery
 import com.graphqlapollo.PokemonListQuery
 import com.graphqlapollo.PokemonStatsInfoQuery
 import com.graphqlapollo.PokemonTypeInfoQuery
 import javax.inject.Inject
 
-class PokemonRepositoryManager @Inject constructor (private val pokemonApi: PokemonApi):
-    PokemonSource {
+class PokemonManager @Inject constructor (private val pokemonApi: PokemonApi):
+    PokemonRepository {
     override suspend fun getPokemonList(limit: Int, offset: Int): Response<PokemonListQuery.Data> {
         return pokemonApi.getApolloClient().query(PokemonListQuery(limit, offset)).await()
     }

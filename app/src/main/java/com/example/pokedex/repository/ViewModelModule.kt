@@ -1,7 +1,7 @@
 package com.example.pokedex.repository
 
-import com.example.pokedex.repository.manager.interfaces.PokemonSource
-import com.example.pokedex.repository.manager.PokemonRepositoryManager
+import com.example.pokedex.repository.remote.interfaces.PokemonRepository
+import com.example.pokedex.repository.remote.manager.PokemonManager
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import dagger.hilt.android.scopes.ViewModelScoped
 abstract class ViewModelModule {
     @Binds
     @ViewModelScoped
-    abstract fun bindRepository(repo: PokemonRepositoryManager) : PokemonSource
+    abstract fun bindRepository(repo: PokemonManager) : PokemonRepository
 }

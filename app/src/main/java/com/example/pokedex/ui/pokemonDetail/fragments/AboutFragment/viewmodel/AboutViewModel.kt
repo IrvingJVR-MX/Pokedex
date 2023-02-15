@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.example.pokedex.repository.manager.interfaces.PokemonSource
+import com.example.pokedex.repository.remote.interfaces.PokemonRepository
 import com.example.pokedex.utils.ViewState
 import com.graphqlapollo.PokemonAboutInfoQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AboutViewModel
-@Inject constructor(private val repository: PokemonSource): ViewModel()  {
+@Inject constructor(private val repository: PokemonRepository): ViewModel()  {
 
     private  val _PokemonAboutInfo by lazy { MutableLiveData <ViewState<Response<PokemonAboutInfoQuery.Data>>>() }
     val pokemonAboutInfo: LiveData<ViewState<Response<PokemonAboutInfoQuery.Data>>> get() = _PokemonAboutInfo
